@@ -17,11 +17,11 @@ Este projeto tem como objetivo **ensinar passo a passo como usar o Google BigQue
 
 Todos os arquivos `.csv` usados neste projeto estão na pasta [`/data`](data). Você pode baixá-los diretamente por aqui:
 
-- [advogados.csv](data/advogados.csv)
-- [contadores.csv](data/contadores.csv)
-- [engenheiros.csv](data/engenheiros.csv)
-- [estados_brasil.csv](data/estados_brasil.csv)
-- [psicologos.csv](data/psicologos.csv)
+- [advogados.csv](https://github.com/gfill99/profissoes_brasil/blob/main/data/advogados.csv)
+- [contadores.csv](https://github.com/gfill99/profissoes_brasil/blob/main/data/contadores.csv)
+- [engenheiros.csv](https://github.com/gfill99/profissoes_brasil/blob/main/data/engenheiros.csv)
+- [estados_brasil.csv](https://github.com/gfill99/profissoes_brasil/blob/main/data/estados_brasil.csv)
+- [psicologos.csv](https://github.com/gfill99/profissoes_brasil/blob/main/data/psicologos.csv)
 
 ---
 
