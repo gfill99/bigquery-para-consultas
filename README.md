@@ -1,70 +1,60 @@
 # 📊 Profissões no Brasil com BigQuery
 
-Este projeto tem como objetivo analisar a distribuição de profissionais por estado no Brasil usando o Google BigQuery. Foram integradas diferentes bases de dados contendo informações sobre advogados, contadores, engenheiros, psicólogos e os estados brasileiros.
+Este projeto tem como objetivo **ensinar passo a passo como usar o Google BigQuery**, utilizando dados reais sobre profissões no Brasil (como advogados, contadores, engenheiros e psicólogos).
 
 ---
 
-# 🧱 Estrutura do Projeto
+## 🧠 O que você vai aprender
 
-- Projeto no BigQuery: `profissoes_brasil`
-
-- Dataset: `profissoes`
-
-- Tabelas:
-
-  - `estados_brasil` – Contém os nomes e siglas dos estados
-
-  - `advogados` – Quantidade de advogados por estado, separados por gênero
-
-  - `contadores` – Quantidade de contadores por estado, separados por gênero
-
-  - `engenheiros` – Quantidade de engenheiros, com alguns estados prefixados com "CREA-"
-
-  - `psicologos` – Quantidade de psicólogos por estado, separados por gênero
- 
----
-
-# 🧠 Objetivo
-
-Consolidar todas as informações em uma única tabela para análise cruzada de profissionais por estado, com separação por gênero.
+- Como criar um projeto no Google Cloud e usar o BigQuery
+- Como importar dados CSV do seu computador para o BigQuery
+- Como fazer consultas SQL com `JOIN`, `TRIM`, `UPPER`, `REPLACE` e outros comandos úteis
+- Como resolver problemas comuns de limpeza e padronização de dados
 
 ---
 
-# ✅ Passo a passo
+## 📁 Arquivos de dados
 
-## 1. Importação e verificação dos dados
-- Carreguei as tabelas no BigQuery.
-- Verifiquei o conteúdo com SELECT * FROM ... LIMIT 10 para entender a estrutura de cada uma.
+Todos os arquivos `.csv` usados neste projeto estão na pasta [`/data`](data). Você pode baixá-los diretamente por aqui:
 
-## 2. Identificação de inconsistências
-- A tabela estados_brasil tinha colunas com espaços invisíveis no nome ( uf e nome_estado).
-- Foi necessário utilizar backticks e aplicar TRIM() para remover espaços ao referenciar essas colunas.
-
-## 3. Padronização de formatos
-- Alguns nomes de estado nas tabelas estavam em letras minúsculas.
-- Foi aplicado UPPER() nas colunas de JOIN para garantir uniformidade.
-- A tabela engenheiros tinha o prefixo "CREA-" nos nomes dos estados, removido com REPLACE().
-
-## 4. Construção dos JOINs
-- Utilizei LEFT JOINs para combinar as tabelas de profissões com a tabela estados_brasil, garantindo que todos os estados aparecessem mesmo se alguma profissão estivesse ausente.
-- O JOIN com psicólogos foi feito com nome_estado, enquanto os demais usaram uf.
+- [advogados.csv](data/advogados.csv)
+- [contadores.csv](data/contadores.csv)
+- [engenheiros.csv](data/engenheiros.csv)
+- [estados_brasil.csv](data/estados_brasil.csv)
+- [psicologos.csv](data/psicologos.csv)
 
 ---
 
-# 🧪 Resultados
+## 🛠️ Passo a passo no BigQuery
 
-O resultado final é uma tabela consolidada contendo a quantidade de profissionais por gênero e por estado, o que permite realizar análises comparativas e criar visualizações.
+### 1. Crie um projeto no Google Cloud
+1. Acesse: [console.cloud.google.com](https://console.cloud.google.com)
+2. Crie um novo projeto
+3. Ative a API do BigQuery (se necessário)
 
----
+### 2. Crie um Dataset
+No painel do BigQuery:
+- Vá em seu projeto → clique em **"Criar conjunto de dados"**
+- Nomeie como `profissoes`
 
-# 🛠️ Ferramentas utilizadas
-- Google BigQuery
-- SQL padrão ANSI
-- Google Cloud Console
+### 3. Faça o upload dos arquivos CSV
+Para cada arquivo `.csv`:
+- Clique com o botão direito no dataset → **"Criar tabela"**
+- Fonte: Upload de arquivo
+- Tipo: CSV
+- Esquema: Autodetectar ou informar manualmente
+- Nomeie a tabela de forma correspondente (ex: `advogados`, `engenheiros` etc.)
 
----
+### 4. Faça as consultas SQL
+Use as funções `TRIM()`, `UPPER()` e `REPLACE()` para padronizar os dados e realizar os `JOINs`.  
+Exemplo:
 
-# 🚧 Desafios enfrentados
-- Colunas com espaços invisíveis exigiram atenção especial com TRIM() e backticks.
-- Diferentes padrões de nomenclatura (uf vs estado, "CREA-") exigiram transformações com UPPER() e REPLACE().
-
+```sql
+SELECT
+  a.id,
+  TRIM(a.` nome_estado`) AS nome_estado,
+  b.masculino,
+  b.feminino
+FROM `seu-projeto.profissoes.estados_brasil` AS a
+LEFT JOIN `seu-projeto.profissoes.advogados` AS b
+ON UPPER(TRIM(a.` uf`)) = UPPER(b.estado)
