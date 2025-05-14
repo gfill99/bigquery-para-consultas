@@ -50,7 +50,7 @@ Os dados necessários para o projeto estão disponíveis no GitHub. Siga os pass
 4. No canto superior direito de cada arquivo, clique em **Download** para baixá-lo para o seu computador.
 
 ```plaintext
-profissoes_brasil/
+bigquery-para-consulta/
 ├── data/
 │ ├── Advogados.csv
 │ ├── Contadores.csv
