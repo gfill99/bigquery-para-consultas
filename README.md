@@ -66,6 +66,7 @@ Depois de baixar os arquivos, faça o upload deles para o BigQuery, conforme exp
 - No BigQuery, selecione o conjunto de dados que você criou anteriormente.
 - Clique nos três pontinhos ao lado e selecione **Criar tabela**.
 - Em **Origem**, selecione **Fazer upload** e faça o upload do arquivo CSV.
+- Em **Nome da tabela**, insira um nome **simples e descritivo** (ex: `advogados`, `contadores`, `engenheiros`, `estados_brasil`, `psicologos`).
 - Em **Esquema**, selecione **Detectar automaticamente**.
 - Clique em **Criar tabela**.
 
