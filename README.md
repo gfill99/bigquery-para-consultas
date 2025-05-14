@@ -44,7 +44,7 @@ Agora que você já configurou seu ambiente no Google Cloud, o próximo passo é
 
 Os dados necessários para o projeto estão disponíveis no GitHub. Siga os passos abaixo para obter os arquivos:
 
-1. Acesse o repositório [profissoes_brasil](https://github.com/gfill99/profissoes_brasil).
+1. Acesse o repositório [profissoes_brasil](https://github.com/gfill99/bigquery-para-consultas).
 2. Dentro do repositório, vá para a pasta **[data](https://github.com/gfill99/profissoes_brasil/tree/main/data)**.
 3. Nas subpastas (como `advogados`, `contadores`, etc.), clique no arquivo CSV desejado.
 4. No canto superior direito de cada arquivo, clique em **Download** para baixá-lo para o seu computador.
